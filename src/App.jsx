@@ -1,9 +1,8 @@
-
+import React from 'react';
+import TechnologyCard from './components/TechnologyCard'; // Оставляем так
 import './App.css';
-import TechnologyCard from './components/TechnologyCard';
 
 function App() {
-    
     const technologies = [
         { 
             id: 1, 
@@ -31,7 +30,6 @@ function App() {
 
     return (
         <div className="App">
-            {}
             <div className="progress-header">
                 <h1>Трекер изучения технологий</h1>
                 <div className="stats">
@@ -47,19 +45,18 @@ function App() {
                         <span className="number">{technologies.filter(tech => tech.status === 'in-progress').length}</span>
                         <span className="label">В процессе</span>
                     </div>
-                    <div className="progress-container">
-                        <div className="progress-bar">
-                            <div 
-                                className="progress-fill" 
-                                style={{ width: `${progressPercentage}%` }}
-                            ></div>
-                        </div>
-                        <span className="progress-text">{progressPercentage}% выполнено</span>
+                </div>
+                <div className="progress-container">
+                    <div className="progress-bar">
+                        <div 
+                            className="progress-fill" 
+                            style={{ width: `${progressPercentage}%` }}
+                        ></div>
                     </div>
+                    <span className="progress-text">{progressPercentage}% выполнено</span>
                 </div>
             </div>
 
-            {}
             <div className="technologies-container">
                 <h2>Технологии для изучения</h2>
                 <div className="technologies-list">

@@ -18,6 +18,8 @@ function TechnologyCard({ title, description, status }) {
         </div>
     );
 }
+
+// Вспомогательные функции
 function getStatusIcon(status) {
     switch(status) {
         case 'completed': return '✅';
