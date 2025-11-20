@@ -1,6 +1,6 @@
-import React from 'react';
-import TechnologyCard from './components/TechnologyCard'; // Оставляем так
 import './App.css';
+import ProgressHeader from './components/ProgressHeader';
+import TechnologyCard from './components/TechnologyCard';
 
 function App() {
     const technologies = [
@@ -21,42 +21,26 @@ function App() {
             title: 'State Management', 
             description: 'Работа с состоянием компонентов, изучение хуков useState и useEffect', 
             status: 'not-started' 
+        },
+        { 
+            id: 4, 
+            title: 'React Router', 
+            description: 'Настройка маршрутизации в React-приложениях', 
+            status: 'not-started' 
+        },
+        { 
+            id: 5, 
+            title: 'API Integration', 
+            description: 'Работа с внешними API, использование fetch и axios', 
+            status: 'in-progress' 
         }
     ];
 
-    const total = technologies.length;
-    const completed = technologies.filter(tech => tech.status === 'completed').length;
-    const progressPercentage = total > 0 ? Math.round((completed / total) * 100) : 0;
-
     return (
         <div className="App">
-            <div className="progress-header">
-                <h1>Трекер изучения технологий</h1>
-                <div className="stats">
-                    <div className="stat">
-                        <span className="number">{total}</span>
-                        <span className="label">Всего</span>
-                    </div>
-                    <div className="stat">
-                        <span className="number">{completed}</span>
-                        <span className="label">Изучено</span>
-                    </div>
-                    <div className="stat">
-                        <span className="number">{technologies.filter(tech => tech.status === 'in-progress').length}</span>
-                        <span className="label">В процессе</span>
-                    </div>
-                </div>
-                <div className="progress-container">
-                    <div className="progress-bar">
-                        <div 
-                            className="progress-fill" 
-                            style={{ width: `${progressPercentage}%` }}
-                        ></div>
-                    </div>
-                    <span className="progress-text">{progressPercentage}% выполнено</span>
-                </div>
-            </div>
-
+            {/* Используем отдельный компонент ProgressHeader */}
+            <ProgressHeader technologies={technologies} />
+            
             <div className="technologies-container">
                 <h2>Технологии для изучения</h2>
                 <div className="technologies-list">
