@@ -33,6 +33,7 @@ function ProgressHeader({ technologies }) {
             <div className="progress-bar-container">
                 <div className="progress-info">
                     <span>Общий прогресс: {progressPercentage}%</span>
+                    <span>{completed} из {total} технологий изучено</span>
                 </div>
                 <div className="progress-bar">
                     <div 

@@ -33,6 +33,12 @@ body {
     font-weight: 600;
 }
 
+.filter-count {
+    color: #667eea;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
 .technologies-list {
     display: flex;
     flex-direction: column;

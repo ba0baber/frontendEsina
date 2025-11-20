@@ -1,8 +1,17 @@
 import './TechnologyCard.css';
 
-function TechnologyCard({ title, description, status }) {
+function TechnologyCard({ id, title, description, status, onStatusChange, isSelected }) {
+    const handleClick = () => {
+        const nextStatus = getNextStatus(status);
+        onStatusChange(id, nextStatus);
+    };
+
     return (
-        <div className={`technology-card ${status}`}>
+        <div 
+            id={`tech-${id}`}
+            className={`technology-card ${status} ${isSelected ? 'selected' : ''}`}
+            onClick={handleClick}
+        >
             <div className="card-content">
                 <div className="card-header">
                     <h3 className="card-title">{title}</h3>
@@ -12,14 +21,15 @@ function TechnologyCard({ title, description, status }) {
                 </div>
                 <p className="card-description">{description}</p>
                 <div className="card-progress">
-                    <span className="progress-text">{getProgressText(status)}</span>
+                    <span className="progress-text">
+                        {getProgressText(status)} (кликни чтобы изменить)
+                    </span>
                 </div>
             </div>
         </div>
     );
 }
 
-// Вспомогательные функции
 function getStatusIcon(status) {
     switch(status) {
         case 'completed': return '✅';
@@ -44,6 +54,15 @@ function getProgressText(status) {
         case 'in-progress': return '50% в процессе';
         case 'not-started': return '0% не начато';
         default: return '';
+    }
+}
+
+function getNextStatus(currentStatus) {
+    switch(currentStatus) {
+        case 'not-started': return 'in-progress';
+        case 'in-progress': return 'completed';
+        case 'completed': return 'not-started';
+        default: return 'not-started';
     }
 }
 
