@@ -1,0 +1,156 @@
+.detailed-statistics {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 20px 0;
+}
+
+.detailed-statistics h3 {
+    margin: 0 0 20px 0;
+    color: #333;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    transition: transform 0.2s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+}
+
+.stat-item.total {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.stat-item.not-started {
+    border-left: 4px solid #ff6b6b;
+}
+
+.stat-item.in-progress {
+    border-left: 4px solid #4ecdc4;
+}
+
+.stat-item.completed {
+    border-left: 4px solid #45b7d1;
+}
+
+.stat-value {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.stat-percentage {
+    font-size: 0.8em;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.progress-summary {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.progress-percent {
+    color: #45b7d1;
+    font-weight: bold;
+}
+
+.progress-bar-detailed {
+    height: 20px;
+    background: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.not-started-fill {
+    background: #ff6b6b;
+}
+
+.in-progress-fill {
+    background: #4ecdc4;
+}
+
+.completed-fill {
+    background: #45b7d1;
+}
+
+.progress-legend {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85em;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.not-started-color {
+    background: #ff6b6b;
+}
+
+.in-progress-color {
+    background: #4ecdc4;
+}
+
+.completed-color {
+    background: #45b7d1;
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .progress-legend {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

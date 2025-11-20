@@ -1,118 +1,82 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import ProgressHeader from './components/ProgressHeader';
 import TechnologyCard from './components/TechnologyCard';
 import QuickActions from './components/QuickActions';
 import FilterButtons from './components/FilterButtons';
+import TechnologyNotes from './components/TechnologyNotes';
+import DetailedStatistics from './components/DetailedStatistics';
+import useTechnologies from './hooks/useTechnologies';
 
 function App() {
-    const [technologies, setTechnologies] = useState([
-        { 
-            id: 1, 
-            title: 'React Components', 
-            description: 'Изучение функциональных и классовых компонентов, работа с props и state', 
-            status: 'not-started' 
-        },
-        { 
-            id: 2, 
-            title: 'JSX Syntax', 
-            description: 'Освоение синтаксиса JSX, условного рендеринга и работы со списками', 
-            status: 'not-started' 
-        },
-        { 
-            id: 3, 
-            title: 'State Management', 
-            description: 'Работа с состоянием компонентов, изучение хуков useState и useEffect', 
-            status: 'not-started' 
-        },
-        { 
-            id: 4, 
-            title: 'React Router', 
-            description: 'Настройка маршрутизации в React-приложениях', 
-            status: 'not-started' 
-        },
-        { 
-            id: 5, 
-            title: 'API Integration', 
-            description: 'Работа с внешними API, использование fetch и axios', 
-            status: 'not-started' 
-        }
-    ]);
+    const { 
+        technologies, 
+        updateStatus, 
+        updateNotes, 
+        markAllCompleted, 
+        resetAll, 
+        randomSelect,
+        progress 
+    } = useTechnologies();
+
     const [activeFilter, setActiveFilter] = useState('all');
     const [selectedTechId, setSelectedTechId] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
+
     const handleStatusChange = (id, newStatus) => {
-        setTechnologies(prevTech => 
-            prevTech.map(tech => 
-                tech.id === id ? { ...tech, status: newStatus } : tech
-            )
-        );
-
-        setSelectedTechId(null);
-    };
-    const handleMarkAllCompleted = () => {
-        setTechnologies(prevTech => 
-            prevTech.map(tech => ({ ...tech, status: 'completed' }))
-        );
-        setSelectedTechId(null);
-    };
-
-    const handleResetAll = () => {
-        setTechnologies(prevTech => 
-            prevTech.map(tech => ({ ...tech, status: 'not-started' }))
-        );
+        updateStatus(id, newStatus);
         setSelectedTechId(null);
     };
 
     const handleRandomSelect = () => {
-
-        const notCompletedTech = technologies.filter(
-            tech => tech.status !== 'completed'
-        );
-        
-        if (notCompletedTech.length === 0) {
-            alert('🎉 Все технологии уже изучены!');
-            setSelectedTechId(null);
-            return;
+        const selectedId = randomSelect();
+        if (selectedId) {
+            setSelectedTechId(selectedId);
+            setTimeout(() => {
+                const element = document.getElementById(`tech-${selectedId}`);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+            alert(`🎲 Выбрана технология: ${technologies.find(tech => tech.id === selectedId)?.title}\nСтатус изменен на "В процессе"`);
         }
-        
-        const randomIndex = Math.floor(Math.random() * notCompletedTech.length);
-        const randomTech = notCompletedTech[randomIndex];
-        
-        setTechnologies(prevTech => 
-            prevTech.map(tech => 
-                tech.id === randomTech.id 
-                    ? { ...tech, status: 'in-progress' } 
-                    : tech
-            )
-        );
-
-        setSelectedTechId(randomTech.id);
-        setTimeout(() => {
-            const element = document.getElementById(`tech-${randomTech.id}`);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }, 100);
-        
-
-        alert(`🎲 Выбрана технология: ${randomTech.title}\nСтатус изменен на "В процессе"`);
     };
 
-
     const filteredTechnologies = technologies.filter(tech => {
-        if (activeFilter === 'all') return true;
-        return tech.status === activeFilter;
+
+        const statusMatch = activeFilter === 'all' || tech.status === activeFilter;
+
+        const searchMatch = searchQuery === '' || 
+            tech.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            tech.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+        return statusMatch && searchMatch;
     });
 
     return (
         <div className="App">
             <ProgressHeader technologies={technologies} />
             
+            {}
+            <DetailedStatistics technologies={technologies} />
+            
             <QuickActions 
-                onMarkAllCompleted={handleMarkAllCompleted}
-                onResetAll={handleResetAll}
+                onMarkAllCompleted={markAllCompleted}
+                onResetAll={resetAll}
                 onRandomSelect={handleRandomSelect}
+                technologies={technologies}
             />
+
+            {}
+            <div className="search-box">
+                <input
+                    type="text"
+                    placeholder="Поиск технологий..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <span className="search-results">Найдено: {filteredTechnologies.length}</span>
+            </div>
 
             <FilterButtons 
                 activeFilter={activeFilter}
@@ -126,15 +90,22 @@ function App() {
                 </h2>
                 <div className="technologies-list">
                     {filteredTechnologies.map(tech => (
-                        <TechnologyCard
-                            key={tech.id}
-                            id={tech.id}
-                            title={tech.title}
-                            description={tech.description}
-                            status={tech.status}
-                            onStatusChange={handleStatusChange}
-                            isSelected={tech.id === selectedTechId}
-                        />
+                        <div key={tech.id} className="technology-item" id={`tech-${tech.id}`}>
+                            <TechnologyCard
+                                id={tech.id}
+                                title={tech.title}
+                                description={tech.description}
+                                status={tech.status}
+                                onStatusChange={handleStatusChange}
+                                isSelected={tech.id === selectedTechId}
+                            />
+                            {}
+                            <TechnologyNotes 
+                                notes={tech.notes}
+                                onNotesChange={updateNotes}
+                                techId={tech.id}
+                            />
+                        </div>
                     ))}
                 </div>
             </div>

@@ -1,60 +1,435 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    background-color: #f5f7fa;
-    color: #333;
-    line-height: 1.6;
+.app-header {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-.App {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    min-height: 100vh;
+.app-header h1 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 2.5em;
+  font-weight: 700;
 }
 
-.technologies-container {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+.progress-section {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.technologies-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #2c3e50;
-    font-size: 2em;
-    font-weight: 600;
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
-.filter-count {
-    color: #667eea;
-    font-size: 0.8em;
-    margin-left: 10px;
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  transition: width 0.3s ease;
+  border-radius: 10px;
 }
 
-.technologies-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.progress-text {
+  font-size: 1.1em;
+  color: #666;
+  font-weight: 500;
+}
+
+.main-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.search-box {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.search-results {
+  color: #666;
+  font-size: 14px;
+}
+
+.technologies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.technology-card {
+  background: #fff;
+  border: 2px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.technology-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border-color: #667eea;
+}
+
+.tech-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.tech-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.4em;
+  font-weight: 600;
+  flex: 1;
+  margin-right: 15px;
+}
+
+.status-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  font-size: 14px;
+}
+
+.status-not-started {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.status-in-progress {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.status-completed {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.status-button:hover {
+  transform: scale(1.05);
+}
+
+.tech-description {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.notes-section {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.notes-section h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.notes-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.notes-section textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.notes-hint {
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.no-results p {
+  font-size: 1.2em;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
-    .App {
-        padding: 15px;
-    }
-    
-    .technologies-container {
-        padding: 20px;
-    }
-    
-    .technologies-container h2 {
-        font-size: 1.6em;
-    }
+  .app {
+    padding: 10px;
+  }
+  
+  .app-header h1 {
+    font-size: 2em;
+  }
+  
+  .technologies-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tech-header {
+    flex-direction: column;
+  }
+  
+  .tech-header h3 {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .status-button {
+    align-self: flex-start;
+  }
+}
+
+.search-box {
+    margin: 15px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+.search-results {
+    color: #666;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.notes-section {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #4a90e2;
+}
+
+.notes-section h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.notes-section textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 13px;
+    transition: border-color 0.3s ease;
+}
+
+.notes-section textarea:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+.notes-hint {
+    font-size: 12px;
+    color: #666;
+    margin-top: 6px;
+    font-style: italic;
+}
+
+.technology-item {
+    margin-bottom: 20px;
+}
+
+.technology-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 4px solid #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.technology-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+
+.technology-card h3 {
+    color: #2c3e50; 
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+}
+
+.technology-card .tech-description {
+    color: #5a6c7d; 
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+    opacity: 1; 
+}
+
+
+.status-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    font-size: 14px;
+    color: white !important; 
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.status-not-started {
+    background: #ff6b6b;
+}
+
+.status-in-progress {
+    background: #ffa726;
+}
+
+.status-completed {
+    background: #4CAF50;
+}
+
+
+.detailed-statistics h3 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.stat-item .stat-value {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.stat-item .stat-label {
+    color: #5a6c7d;
+    font-weight: 500;
+}
+
+.search-box input {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.search-box input::placeholder {
+    color: #8a9ba8;
+    opacity: 0.8;
+}
+
+.search-results {
+    color: #5a6c7d;
+    font-weight: 500;
+}
+
+.filter-buttons button {
+    color: #5a6c7d;
+    font-weight: 500;
+}
+
+.filter-buttons button.active {
+    color: white;
+    font-weight: 600;
+}
+
+
+.notes-section h4 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.notes-section textarea {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.notes-hint {
+    color: #5a6c7d;
+    font-weight: 500;
+}
+
+.progress-header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 800;
+    color: white;
+    text-shadow: 
+        0 2px 4px rgba(0,0,0,0.4),
+        0 0 20px rgba(255,255,255,0.3); 
+    background: linear-gradient(45deg, #fff, #e3f2fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }

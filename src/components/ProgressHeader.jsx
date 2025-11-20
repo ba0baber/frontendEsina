@@ -1,45 +1,51 @@
 import './ProgressHeader.css';
 
 function ProgressHeader({ technologies }) {
-    const total = technologies.length;
-    const completed = technologies.filter(tech => tech.status === 'completed').length;
-    const inProgress = technologies.filter(tech => tech.status === 'in-progress').length;
-    const notStarted = technologies.filter(tech => tech.status === 'not-started').length;
+    const totalCount = technologies.length;
+    const completedCount = technologies.filter(tech => tech.status === 'completed').length;
+    const inProgressCount = technologies.filter(tech => tech.status === 'in-progress').length;
+    const notStartedCount = technologies.filter(tech => tech.status === 'not-started').length;
     
-    const progressPercentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+    const progressPercentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
     return (
         <div className="progress-header">
-            <h1>Трекер изучения технологий</h1>
-            <div className="stats">
-                <div className="stat">
-                    <span className="number">{total}</span>
-                    <span className="label">Всего</span>
-                </div>
-                <div className="stat">
-                    <span className="number">{completed}</span>
-                    <span className="label">Изучено</span>
-                </div>
-                <div className="stat">
-                    <span className="number">{inProgress}</span>
-                    <span className="label">В процессе</span>
-                </div>
-                <div className="stat">
-                    <span className="number">{notStarted}</span>
-                    <span className="label">Не начато</span>
+            <div className="header-main">
+                <h1> Трекер изучения технологий</h1>
+                <div className="progress-overview">
+                    <div className="progress-text">
+                        <span className="progress-percent">{progressPercentage}%</span>
+                        <span className="progress-details">
+                            {completedCount} из {totalCount} технологий изучено
+                        </span>
+                    </div>
+                    <div className="progress-bar-container">
+                        <div className="progress-bar">
+                            <div 
+                                className="progress-fill"
+                                style={{ width: `${progressPercentage}%` }}
+                            ></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div className="progress-bar-container">
-                <div className="progress-info">
-                    <span>Общий прогресс: {progressPercentage}%</span>
-                    <span>{completed} из {total} технологий изучено</span>
+            <div className="stats-overview">
+                <div className="stat-item">
+                    <div className="stat-number total">{totalCount}</div>
+                    <div className="stat-label">Всего</div>
                 </div>
-                <div className="progress-bar">
-                    <div 
-                        className="progress-fill"
-                        style={{ width: `${progressPercentage}%` }}
-                    ></div>
+                <div className="stat-item">
+                    <div className="stat-number completed">{completedCount}</div>
+                    <div className="stat-label">Изучено</div>
+                </div>
+                <div className="stat-item">
+                    <div className="stat-number in-progress">{inProgressCount}</div>
+                    <div className="stat-label">В процессе</div>
+                </div>
+                <div className="stat-item">
+                    <div className="stat-number not-started">{notStartedCount}</div>
+                    <div className="stat-label">Не начато</div>
                 </div>
             </div>
         </div>

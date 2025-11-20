@@ -1,60 +1,185 @@
 .quick-actions {
     background: white;
-    border-radius: 12px;
     padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     margin: 20px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .quick-actions h3 {
     margin: 0 0 15px 0;
     color: #333;
+    font-size: 1.2em;
     text-align: center;
 }
 
-.action-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    justify-items: center;
 }
 
 .action-btn {
-    padding: 10px 15px;
+    width: 120px;
+    height: 120px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .action-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.action-btn:active {
+    transform: translateY(-1px);
 }
 
 .action-btn.complete-all {
-    background: linear-gradient(135deg, #4caf50, #45a049);
-    color: white;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.action-btn.complete-all:hover {
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
 
 .action-btn.reset-all {
-    background: linear-gradient(135deg, #ff9800, #f57c00);
-    color: white;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.action-btn.reset-all:hover {
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
 }
 
 .action-btn.random-select {
-    background: linear-gradient(135deg, #2196f3, #1976d2);
-    color: white;
+    background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+    box-shadow: 0 4px 12px rgba(255, 167, 38, 0.3);
 }
 
+.action-btn.random-select:hover {
+    box-shadow: 0 6px 20px rgba(255, 167, 38, 0.4);
+}
+
+.btn-icon {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.btn-text {
+    font-size: 0.85em;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+}
+
+
 @media (max-width: 768px) {
-    .action-buttons {
-        flex-direction: column;
+    .actions-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .action-btn {
+        width: 100px;
+        height: 100px;
+        padding: 12px;
+    }
+    
+    .btn-icon {
+        font-size: 1.7em;
+    }
+    
+    .btn-text {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .actions-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
     
     .action-btn {
         width: 100%;
+        height: 80px;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 15px 20px;
+        gap: 15px;
     }
+    
+    .btn-icon {
+        margin-bottom: 0;
+        font-size: 1.5em;
+    }
+    
+    .btn-text {
+        font-size: 0.9em;
+        text-align: left;
+    }
+}
+.action-btn.export-data {
+    background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+    box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+}
+
+.action-btn.export-data:hover {
+    box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+}
+
+.export-success {
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.export-success h3 {
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.export-stats {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    text-align: left;
+}
+
+.export-stats p {
+    margin: 8px 0;
+    color: #555;
+}
+
+.close-modal-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.close-modal-btn:hover {
+    background: #5a6fd8;
 }
