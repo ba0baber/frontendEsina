@@ -1,3 +1,4 @@
+import React from 'react';
 import './ProgressHeader.css';
 
 function ProgressHeader({ technologies }) {
@@ -11,7 +12,7 @@ function ProgressHeader({ technologies }) {
     return (
         <div className="progress-header">
             <div className="header-main">
-                <h1> Трекер изучения технологий</h1>
+                <h1>🚀 Трекер изучения технологий</h1>
                 <div className="progress-overview">
                     <div className="progress-text">
                         <span className="progress-percent">{progressPercentage}%</span>

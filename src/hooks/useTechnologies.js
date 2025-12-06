@@ -1,3 +1,4 @@
+import React from 'react';
 import useLocalStorage from './useLocalStorage';
 
 const initialTechnologies = [
@@ -79,6 +80,7 @@ function useTechnologies() {
             prev.map(tech => ({ ...tech, status: 'not-started' }))
         );
     };
+    
     const randomSelect = () => {
         const notCompletedTech = technologies.filter(tech => tech.status !== 'completed');
         

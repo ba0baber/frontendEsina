@@ -1,3 +1,4 @@
+import React from 'react';
 import './FilterButtons.css';
 
 function FilterButtons({ activeFilter, onFilterChange }) {

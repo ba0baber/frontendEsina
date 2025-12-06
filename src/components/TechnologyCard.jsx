@@ -1,3 +1,4 @@
+import React from 'react';
 import './TechnologyCard.css';
 
 function TechnologyCard({ id, title, description, status, onStatusChange, isSelected }) {
