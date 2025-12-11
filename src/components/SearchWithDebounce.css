@@ -1,0 +1,125 @@
+
+.search-with-debounce {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.search-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.search-input:disabled {
+    background: #f8f9fa;
+    cursor: not-allowed;
+}
+
+.search-controls {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-loading-indicator {
+    display: flex;
+    align-items: center;
+}
+
+.search-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.clear-search-button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+}
+
+.clear-search-button:hover {
+    background: #f8f9fa;
+    color: #495057;
+}
+
+.clear-search-button:active {
+    transform: scale(0.95);
+}
+
+.search-stats {
+    margin-top: 8px;
+    padding: 0 5px;
+    min-height: 24px;
+}
+
+.searching-text {
+    color: #667eea;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.search-term-info {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.search-term-info strong {
+    color: #495057;
+    font-weight: 600;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@media (max-width: 768px) {
+    .search-input {
+        padding: 10px 40px 10px 12px;
+        font-size: 14px;
+    }
+    
+    .clear-search-button {
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+    }
+    
+    .search-spinner {
+        width: 16px;
+        height: 16px;
+    }
+}

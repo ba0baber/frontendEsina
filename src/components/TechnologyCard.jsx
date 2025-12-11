@@ -1,7 +1,7 @@
 import React from 'react';
 import './TechnologyCard.css';
 
-function TechnologyCard({ id, title, description, status, onStatusChange, isSelected }) {
+function TechnologyCard({ id, title, description, status, onStatusChange, isSelected, isFromApi = false }) {
     const handleClick = () => {
         const nextStatus = getNextStatus(status);
         onStatusChange(id, nextStatus);
@@ -10,12 +10,19 @@ function TechnologyCard({ id, title, description, status, onStatusChange, isSele
     return (
         <div 
             id={`tech-${id}`}
-            className={`technology-card ${status} ${isSelected ? 'selected' : ''}`}
+            className={`technology-card ${status} ${isSelected ? 'selected' : ''} ${isFromApi ? 'from-api' : ''}`}
             onClick={handleClick}
         >
             <div className="card-content">
                 <div className="card-header">
-                    <h3 className="card-title">{title}</h3>
+                    <div className="title-wrapper">
+                        <h3 className="card-title">{title}</h3>
+                        {isFromApi && (
+                            <span className="api-indicator" title="Загружено из API">
+                                🌐
+                            </span>
+                        )}
+                    </div>
                     <span className={`status-badge ${status}`}>
                         {getStatusIcon(status)} {getStatusText(status)}
                     </span>
@@ -25,6 +32,11 @@ function TechnologyCard({ id, title, description, status, onStatusChange, isSele
                     <span className="progress-text">
                         {getProgressText(status)} (кликни чтобы изменить)
                     </span>
+                    {isFromApi && (
+                        <span className="api-hint">
+                            Добавьте в свой список для отслеживания прогресса
+                        </span>
+                    )}
                 </div>
             </div>
         </div>
